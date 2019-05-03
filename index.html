@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>jqtabs</title>
+	<link rel="stylesheet" href="./css/jquery.tabs.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.nav {
+			width: 700px;
+			margin: 30px auto;
+		}
+
+		.demo {
+			width: 700px;
+			height: 250px;
+			margin: 0 auto;
+			border: 1px solid #e4eaec;
+			background-color: #f1f4f5;
+		}
+	</style>
+</head>
+<body>
+
+<div class="nav">
+	<a class="menu-item" href="javascript:">添加选项卡</a>
+</div>
+
+<div class="demo"></div>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.tabs.js"></script>
+<script>
+	var jqtabs = $(".demo").jqtabs({
+		scrollIncrement: 300,
+		scrollDuration: "fast",
+		onAdd: function (tab, index) {
+			console.log(index + ": " + tab);
+		},
+		onSelect: function (tab, index) {
+			console.log(index + ": " + tab);
+		},
+		onRefresh: function (tab, index) {
+			console.log(index + ": " + tab);
+		},
+		onBeforeClose: function (tab, index) {
+			console.log(index + ": " + tab);
+		},
+		onClose: function (tab, index) {
+			console.log(index + ": " + tab);
+		}
+	});
+
+	//首个tab不可关闭
+	jqtabs.jqtabs("add", {
+		title: "首页",
+		closeable: false
+	});
+
+	var tabIndex = 1;
+	$(".menu-item").click(function () {
+		jqtabs.jqtabs("add", {
+			title: "选项卡" + tabIndex++,
+			closeable: true
+		});
+	});
+</script>
+
+</body>
+</html>
